@@ -1,0 +1,278 @@
+/* Arbern Holdings Pvt Ltd - Architectural Minimalist Stylesheet */
+
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --cad-blue-bg: #070c16;
+  --cad-blue-card: rgba(13, 22, 38, 0.72);
+  --cad-blue-border: rgba(0, 229, 255, 0.18);
+  --cad-cyan: #00e5ff;
+  --cad-cyan-glow: rgba(0, 229, 255, 0.4);
+  --cad-amber: #ffaa00;
+  --cad-grid-major: rgba(0, 229, 255, 0.08);
+  --cad-grid-minor: rgba(0, 229, 255, 0.025);
+  --cad-text-muted: #8395a7;
+  --font-heading: 'Space Grotesk', -apple-system, sans-serif;
+  --font-body: 'Plus Jakarta Sans', -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+/* Light / Blueprint Parchment Mode variables */
+[data-theme="light-blueprint"] {
+  --cad-blue-bg: #f4f6fa;
+  --cad-blue-card: rgba(255, 255, 255, 0.88);
+  --cad-blue-border: rgba(14, 55, 115, 0.18);
+  --cad-cyan: #0c4a9e;
+  --cad-cyan-glow: rgba(12, 74, 158, 0.25);
+  --cad-amber: #d97706;
+  --cad-grid-major: rgba(12, 74, 158, 0.09);
+  --cad-grid-minor: rgba(12, 74, 158, 0.035);
+  --cad-text-muted: #4b5563;
+}
+
+/* Deep Obsidian Monochrome Mode variables */
+[data-theme="obsidian"] {
+  --cad-blue-bg: #08080a;
+  --cad-blue-card: rgba(18, 18, 22, 0.75);
+  --cad-blue-border: rgba(255, 255, 255, 0.12);
+  --cad-cyan: #ffffff;
+  --cad-cyan-glow: rgba(255, 255, 255, 0.3);
+  --cad-amber: #e2e8f0;
+  --cad-grid-major: rgba(255, 255, 255, 0.07);
+  --cad-grid-minor: rgba(255, 255, 255, 0.02);
+  --cad-text-muted: #94a3b8;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-family: var(--font-body);
+  background-color: var(--cad-blue-bg);
+  color: #e2e8f0;
+}
+
+[data-theme="light-blueprint"] html,
+[data-theme="light-blueprint"] body {
+  color: #0f172a;
+}
+
+body {
+  overflow-x: hidden;
+  background-color: var(--cad-blue-bg);
+  transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+/* Custom CAD Millimeter Grid Background */
+.cad-grid-bg {
+  background-image: 
+    linear-gradient(to right, var(--cad-grid-major) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--cad-grid-major) 1px, transparent 1px),
+    linear-gradient(to right, var(--cad-grid-minor) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--cad-grid-minor) 1px, transparent 1px);
+  background-size: 80px 80px, 80px 80px, 16px 16px, 16px 16px;
+}
+
+/* CAD Technical Typography */
+.font-mono-cad {
+  font-family: var(--font-mono);
+}
+
+.font-heading {
+  font-family: var(--font-heading);
+}
+
+/* Architectural crosshair & ruler tick marks */
+.cad-ruler-top {
+  background: repeating-linear-gradient(
+    90deg,
+    var(--cad-cyan-glow) 0px,
+    var(--cad-cyan-glow) 1px,
+    transparent 1px,
+    transparent 10px
+  );
+}
+
+.cad-corner-marks {
+  position: relative;
+}
+
+.cad-corner-marks::before,
+.cad-corner-marks::after {
+  content: '';
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  pointer-events: none;
+  border-color: var(--cad-cyan);
+  opacity: 0.6;
+}
+
+.cad-corner-marks::before {
+  top: 0;
+  left: 0;
+  border-top: 1.5px solid var(--cad-cyan);
+  border-left: 1.5px solid var(--cad-cyan);
+}
+
+.cad-corner-marks::after {
+  bottom: 0;
+  right: 0;
+  border-bottom: 1.5px solid var(--cad-cyan);
+  border-right: 1.5px solid var(--cad-cyan);
+}
+
+/* Glassmorphism CAD Cards */
+.cad-glass-card {
+  background-color: var(--cad-blue-card);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid var(--cad-blue-border);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.cad-glass-card:hover {
+  border-color: rgba(0, 229, 255, 0.45);
+  box-shadow: 0 10px 30px -10px rgba(0, 229, 255, 0.15);
+}
+
+[data-theme="light-blueprint"] .cad-glass-card:hover {
+  border-color: rgba(12, 74, 158, 0.45);
+  box-shadow: 0 10px 30px -10px rgba(12, 74, 158, 0.12);
+}
+
+/* Blueprint glow accents */
+.cad-glow-text {
+  text-shadow: 0 0 12px var(--cad-cyan-glow);
+}
+
+.cad-border-glow {
+  box-shadow: 0 0 15px var(--cad-cyan-glow);
+}
+
+/* Technical Dimension Line */
+.cad-dimension-line {
+  position: relative;
+  height: 1px;
+  background-color: var(--cad-cyan);
+  opacity: 0.6;
+}
+
+.cad-dimension-line::before,
+.cad-dimension-line::after {
+  content: '';
+  position: absolute;
+  top: -4px;
+  width: 1px;
+  height: 9px;
+  background-color: var(--cad-cyan);
+}
+
+.cad-dimension-line::before {
+  left: 0;
+}
+
+.cad-dimension-line::after {
+  right: 0;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--cad-blue-bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 229, 255, 0.3);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--cad-cyan);
+}
+
+/* Precision Crosshair Cursor */
+.cad-crosshair-enabled {
+  cursor: crosshair;
+}
+
+/* Subtle CAD scanline animation */
+@keyframes cadScan {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(100vh);
+  }
+}
+
+.cad-scan-line {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, var(--cad-cyan) 50%, transparent 100%);
+  opacity: 0.25;
+  pointer-events: none;
+  animation: cadScan 8s linear infinite;
+  z-index: 2;
+}
+
+/* Pulse animation for CAD nodes */
+@keyframes cadPulse {
+  0%, 100% {
+    opacity: 0.3;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1.08);
+  }
+}
+
+.cad-pulse-node {
+  animation: cadPulse 3s ease-in-out infinite;
+}
+
+/* Interactive CAD Blueprint modal & viewer */
+.cad-blueprint-viewer {
+  background: radial-gradient(circle at center, rgba(14, 30, 56, 0.6) 0%, rgba(7, 12, 22, 0.95) 100%);
+}
+
+[data-theme="light-blueprint"] .cad-blueprint-viewer {
+  background: radial-gradient(circle at center, rgba(235, 242, 255, 0.8) 0%, rgba(220, 230, 245, 0.98) 100%);
+}
+
+/* Range input styling for Estimator */
+input[type="range"] {
+  accent-color: var(--cad-cyan);
+}
+
+/* Custom button hover state */
+.btn-cad {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.btn-cad::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+  transition: all 0.5s ease;
+}
+
+.btn-cad:hover::after {
+  left: 100%;
+}
