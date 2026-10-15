@@ -1,46 +1,43 @@
-/* Arbern Holdings Pvt Ltd - Architectural Minimalist Stylesheet */
+/* Arbern Holdings Pvt Ltd - Realistic Architectural Studio Stylesheet */
 
-@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
 
 :root {
-  --cad-blue-bg: #070c16;
-  --cad-blue-card: rgba(13, 22, 38, 0.72);
-  --cad-blue-border: rgba(0, 229, 255, 0.18);
-  --cad-cyan: #00e5ff;
-  --cad-cyan-glow: rgba(0, 229, 255, 0.4);
-  --cad-amber: #ffaa00;
-  --cad-grid-major: rgba(0, 229, 255, 0.08);
-  --cad-grid-minor: rgba(0, 229, 255, 0.025);
-  --cad-text-muted: #8395a7;
+  /* Arbern Brand Palette (from official letterhead) */
+  --arbern-green: #16a34a;
+  --arbern-green-vibrant: #22c55e;
+  --arbern-green-light: #dcfce7;
+  --arbern-green-glow: rgba(34, 197, 94, 0.25);
+  
+  --arbern-charcoal: #1e293b;
+  --arbern-dark: #0f172a;
+  --arbern-slate: #334155;
+  --arbern-muted: #64748b;
+  
+  --arbern-bg: #f8fafc;
+  --arbern-surface: #ffffff;
+  --arbern-card-bg: rgba(255, 255, 255, 0.92);
+  --arbern-border: rgba(203, 213, 225, 0.85);
+  --arbern-border-hover: rgba(22, 163, 74, 0.5);
+  
+  --cad-grid-major: rgba(203, 213, 225, 0.65);
+  --cad-grid-minor: rgba(226, 232, 240, 0.5);
+  
   --font-heading: 'Space Grotesk', -apple-system, sans-serif;
   --font-body: 'Plus Jakarta Sans', -apple-system, sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
 }
 
-/* Light / Blueprint Parchment Mode variables */
-[data-theme="light-blueprint"] {
-  --cad-blue-bg: #f4f6fa;
-  --cad-blue-card: rgba(255, 255, 255, 0.88);
-  --cad-blue-border: rgba(14, 55, 115, 0.18);
-  --cad-cyan: #0c4a9e;
-  --cad-cyan-glow: rgba(12, 74, 158, 0.25);
-  --cad-amber: #d97706;
-  --cad-grid-major: rgba(12, 74, 158, 0.09);
-  --cad-grid-minor: rgba(12, 74, 158, 0.035);
-  --cad-text-muted: #4b5563;
-}
-
-/* Deep Obsidian Monochrome Mode variables */
-[data-theme="obsidian"] {
-  --cad-blue-bg: #08080a;
-  --cad-blue-card: rgba(18, 18, 22, 0.75);
-  --cad-blue-border: rgba(255, 255, 255, 0.12);
-  --cad-cyan: #ffffff;
-  --cad-cyan-glow: rgba(255, 255, 255, 0.3);
-  --cad-amber: #e2e8f0;
-  --cad-grid-major: rgba(255, 255, 255, 0.07);
-  --cad-grid-minor: rgba(255, 255, 255, 0.02);
-  --cad-text-muted: #94a3b8;
+/* Dark Studio Mode Toggle */
+[data-theme="dark-studio"] {
+  --arbern-bg: #0d131f;
+  --arbern-surface: #141c2b;
+  --arbern-card-bg: rgba(20, 28, 43, 0.9);
+  --arbern-border: rgba(51, 65, 85, 0.7);
+  --arbern-border-hover: rgba(34, 197, 94, 0.6);
+  --cad-grid-major: rgba(51, 65, 85, 0.4);
+  --cad-grid-minor: rgba(30, 41, 59, 0.3);
+  --arbern-muted: #94a3b8;
 }
 
 * {
@@ -50,22 +47,22 @@
 html {
   scroll-behavior: smooth;
   font-family: var(--font-body);
-  background-color: var(--cad-blue-bg);
-  color: #e2e8f0;
-}
-
-[data-theme="light-blueprint"] html,
-[data-theme="light-blueprint"] body {
-  color: #0f172a;
+  background-color: var(--arbern-bg);
+  color: var(--arbern-charcoal);
 }
 
 body {
   overflow-x: hidden;
-  background-color: var(--cad-blue-bg);
+  background-color: var(--arbern-bg);
+  color: #1e293b;
   transition: background-color 0.4s ease, color 0.4s ease;
 }
 
-/* Custom CAD Millimeter Grid Background */
+[data-theme="dark-studio"] body {
+  color: #f1f5f9;
+}
+
+/* Subtle Architectural Drafting Grid */
 .cad-grid-bg {
   background-image: 
     linear-gradient(to right, var(--cad-grid-major) 1px, transparent 1px),
@@ -75,26 +72,39 @@ body {
   background-size: 80px 80px, 80px 80px, 16px 16px, 16px 16px;
 }
 
-/* CAD Technical Typography */
-.font-mono-cad {
-  font-family: var(--font-mono);
+/* Letterhead Architectural Perspective Background Layer */
+.arbern-letterhead-bg {
+  background-image: url('../images/arbern-letterhead.jpg');
+  background-repeat: no-repeat;
+  background-position: top right;
+  background-size: contain;
 }
 
-.font-heading {
-  font-family: var(--font-heading);
+/* Realistic Glass & Card Surface */
+.cad-glass-card {
+  background-color: var(--arbern-card-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--arbern-border);
+  box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.05), 0 2px 6px -1px rgba(15, 23, 42, 0.03);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Architectural crosshair & ruler tick marks */
-.cad-ruler-top {
-  background: repeating-linear-gradient(
-    90deg,
-    var(--cad-cyan-glow) 0px,
-    var(--cad-cyan-glow) 1px,
-    transparent 1px,
-    transparent 10px
-  );
+.cad-glass-card:hover {
+  border-color: var(--arbern-border-hover);
+  box-shadow: 0 12px 30px -8px rgba(22, 163, 74, 0.12), 0 4px 12px -2px rgba(15, 23, 42, 0.06);
+  transform: translateY(-2px);
 }
 
+[data-theme="dark-studio"] .cad-glass-card {
+  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.35);
+}
+
+[data-theme="dark-studio"] .cad-glass-card:hover {
+  box-shadow: 0 12px 30px -8px rgba(34, 197, 94, 0.2);
+}
+
+/* Architectural Corner Precision Marks */
 .cad-corner-marks {
   position: relative;
 }
@@ -106,76 +116,31 @@ body {
   width: 10px;
   height: 10px;
   pointer-events: none;
-  border-color: var(--cad-cyan);
-  opacity: 0.6;
+  border-color: var(--arbern-green);
+  opacity: 0.8;
 }
 
 .cad-corner-marks::before {
   top: 0;
   left: 0;
-  border-top: 1.5px solid var(--cad-cyan);
-  border-left: 1.5px solid var(--cad-cyan);
+  border-top: 1.5px solid var(--arbern-green);
+  border-left: 1.5px solid var(--arbern-green);
 }
 
 .cad-corner-marks::after {
   bottom: 0;
   right: 0;
-  border-bottom: 1.5px solid var(--cad-cyan);
-  border-right: 1.5px solid var(--cad-cyan);
+  border-bottom: 1.5px solid var(--arbern-green);
+  border-right: 1.5px solid var(--arbern-green);
 }
 
-/* Glassmorphism CAD Cards */
-.cad-glass-card {
-  background-color: var(--cad-blue-card);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  border: 1px solid var(--cad-blue-border);
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+/* Typography Helpers */
+.font-heading {
+  font-family: var(--font-heading);
 }
 
-.cad-glass-card:hover {
-  border-color: rgba(0, 229, 255, 0.45);
-  box-shadow: 0 10px 30px -10px rgba(0, 229, 255, 0.15);
-}
-
-[data-theme="light-blueprint"] .cad-glass-card:hover {
-  border-color: rgba(12, 74, 158, 0.45);
-  box-shadow: 0 10px 30px -10px rgba(12, 74, 158, 0.12);
-}
-
-/* Blueprint glow accents */
-.cad-glow-text {
-  text-shadow: 0 0 12px var(--cad-cyan-glow);
-}
-
-.cad-border-glow {
-  box-shadow: 0 0 15px var(--cad-cyan-glow);
-}
-
-/* Technical Dimension Line */
-.cad-dimension-line {
-  position: relative;
-  height: 1px;
-  background-color: var(--cad-cyan);
-  opacity: 0.6;
-}
-
-.cad-dimension-line::before,
-.cad-dimension-line::after {
-  content: '';
-  position: absolute;
-  top: -4px;
-  width: 1px;
-  height: 9px;
-  background-color: var(--cad-cyan);
-}
-
-.cad-dimension-line::before {
-  left: 0;
-}
-
-.cad-dimension-line::after {
-  right: 0;
+.font-mono-cad {
+  font-family: var(--font-mono);
 }
 
 /* Custom Scrollbar */
@@ -185,94 +150,58 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--cad-blue-bg);
+  background: var(--arbern-bg);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(0, 229, 255, 0.3);
+  background: rgba(22, 163, 74, 0.3);
   border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--cad-cyan);
+  background: var(--arbern-green);
 }
 
-/* Precision Crosshair Cursor */
-.cad-crosshair-enabled {
-  cursor: crosshair;
-}
-
-/* Subtle CAD scanline animation */
-@keyframes cadScan {
-  0% {
-    transform: translateY(-100%);
-  }
-  100% {
-    transform: translateY(100vh);
-  }
-}
-
-.cad-scan-line {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 1px;
-  background: linear-gradient(90deg, transparent 0%, var(--cad-cyan) 50%, transparent 100%);
-  opacity: 0.25;
-  pointer-events: none;
-  animation: cadScan 8s linear infinite;
-  z-index: 2;
-}
-
-/* Pulse animation for CAD nodes */
-@keyframes cadPulse {
-  0%, 100% {
-    opacity: 0.3;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 0.9;
-    transform: scale(1.08);
-  }
-}
-
-.cad-pulse-node {
-  animation: cadPulse 3s ease-in-out infinite;
-}
-
-/* Interactive CAD Blueprint modal & viewer */
-.cad-blueprint-viewer {
-  background: radial-gradient(circle at center, rgba(14, 30, 56, 0.6) 0%, rgba(7, 12, 22, 0.95) 100%);
-}
-
-[data-theme="light-blueprint"] .cad-blueprint-viewer {
-  background: radial-gradient(circle at center, rgba(235, 242, 255, 0.8) 0%, rgba(220, 230, 245, 0.98) 100%);
-}
-
-/* Range input styling for Estimator */
-input[type="range"] {
-  accent-color: var(--cad-cyan);
-}
-
-/* Custom button hover state */
-.btn-cad {
+/* Custom Buttons */
+.btn-arbern {
   position: relative;
   overflow: hidden;
+  background-color: var(--arbern-green);
+  color: #ffffff;
   transition: all 0.3s ease;
 }
 
-.btn-cad::after {
+.btn-arbern:hover {
+  background-color: #15803d;
+  box-shadow: 0 8px 20px -4px rgba(22, 163, 74, 0.4);
+}
+
+.btn-arbern::after {
   content: '';
   position: absolute;
   top: 0;
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.25), transparent);
   transition: all 0.5s ease;
 }
 
-.btn-cad:hover::after {
+.btn-arbern:hover::after {
   left: 100%;
+}
+
+/* Realistic Rendering Overlays */
+.realistic-render-frame {
+  position: relative;
+  overflow: hidden;
+  border-radius: 0.75rem;
+}
+
+.realistic-render-frame::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.2);
+  pointer-events: none;
 }
